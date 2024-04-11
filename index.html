@@ -26,6 +26,7 @@
       function addContact() {
         const name = prompt("Informe o nome do contato:");
         const phone = prompt("Informe o telefone do contato:");
+        const email = prompt("Informe o seu email:")
 
         if (!name || !phone) {
           alert("Nome e telefone são obrigatórios!");
@@ -35,7 +36,7 @@
         const currentDate = new Date();
         const dateTime = `${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}`;
 
-        contacts.push({ name, phone, dateTime });
+        contacts.push({ name, phone, email, dateTime });
         alert("Contato adicionado com sucesso!");
       }
 
@@ -43,7 +44,7 @@
         let contactList = "***** Lista de Contatos *****\n";
 
         contacts.forEach((contact, index) => {
-          contactList += `ID: ${index}, Nome: ${contact.name}, Telefone: ${contact.phone}, Data e Hora de Adição: ${contact.dateTime}\n`;
+          contactList += `ID: ${index}, Nome: ${contact.name}, Telefone: ${contact.phone}, Email: ${contact.email} Data e Hora de Adição: ${contact.dateTime}\n`;
         });
 
         alert(contactList);
@@ -58,10 +59,12 @@
 
         const newName = prompt("Informe o novo nome do contato:");
         const newPhone = prompt("Informe o novo telefone do contato:");
+        const newEmail = prompt("Informe o novo email:")
 
         if (newName || newPhone) {
           contacts[index].name = newName || contacts[index].name;
           contacts[index].phone = newPhone || contacts[index].phone;
+          contacts[index].email = newEmail || contacts[index].email;
           alert("Contato editado com sucesso!");
         } else {
           alert("Pelo menos um novo nome ou telefone deve ser fornecido para editar o contato.");
