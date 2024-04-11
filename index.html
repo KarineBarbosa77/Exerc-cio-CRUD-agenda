@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Guilherme Amorim" />
+    <title>Agenda de Contatos</title>
+  </head>
+  <body>
+    <script>
+      let contacts = [];
+
+      function showMenu() {
+        return parseInt(
+          prompt(`
+            ***** Agenda de Contatos *****
+            [1] - Adicionar contato
+            [2] - Visualizar contatos
+            [3] - Editar contato
+            [4] - Excluir contato
+            [5] - Sair do programa
+          `)
+        );
+      }
+
+      function addContact() {
+        const name = prompt("Informe o nome do contato:");
+        const phone = prompt("Informe o telefone do contato:");
+
+        if (!name || !phone) {
+          alert("Nome e telefone são obrigatórios!");
+          return;
+        }
+
+        contacts.push({ name, phone });
+        alert("Contato adicionado com sucesso!");
+      }
+
+      function listContacts() {
+        let contactList = "***** Lista de Contatos *****\n";
+
+        contacts.forEach((contact, index) => {
+          contactList += `ID: ${index}, Nome: ${contact.name}, Telefone: ${contact.phone}\n`;
+        });
+
+        alert(contactList);
+      }
+
+      function editContact() {
+        const index = prompt("Informe o ID do contato que deseja editar:");
+        if (index === null || index === "" || isNaN(index) || index < 0 || index >= contacts.length) {
+          alert("ID de contato inválido!");
+          return;
+        }
+
+        const newName = prompt("Informe o novo nome do contato:");
+        const newPhone = prompt("Informe o novo telefone do contato:");
+
+        if (newName || newPhone) {
+          contacts[index].name = newName || contacts[index].name;
+          contacts[index].phone = newPhone || contacts[index].phone;
+          alert("Contato editado com sucesso!");
+        } else {
+          alert("Pelo menos um novo nome ou telefone deve ser fornecido para editar o contato.");
+        }
+      }
+
+      function deleteContact() {
+        const index = prompt("Informe o ID do contato que deseja excluir:");
+        if (index === null || index === "" || isNaN(index) || index < 0 || index >= contacts.length) {
+          alert("ID de contato inválido!");
+          return;
+        }
+
+        const confirmation = confirm(`Tem certeza que deseja excluir o contato ${contacts[index].name}?`);
+
+        if (confirmation) {
+          contacts.splice(index, 1);
+          alert("Contato excluído com sucesso!");
+        }
+      }
+
+      let option = true;
+
+      while (option) {
+        switch (showMenu()) {
+          case 1:
+            addContact();
+            break;
+          case 2:
+            listContacts();
+            break;
+          case 3:
+            editContact();
+            break;
+          case 4:
+            deleteContact();
+            break;
+          case 5:
+            alert("Saindo do programa, até mais!");
+            option = false;
+            break;
+          default:
+            alert("Opção inválida! Tente novamente");
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
