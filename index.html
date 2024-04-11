@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Guilherme Amorim" />
+    <meta name="author" content="Karine Barbosa" />
     <title>Agenda de Contatos</title>
   </head>
   <body>
@@ -32,7 +32,10 @@
           return;
         }
 
-        contacts.push({ name, phone });
+        const currentDate = new Date();
+        const dateTime = `${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}`;
+
+        contacts.push({ name, phone, dateTime });
         alert("Contato adicionado com sucesso!");
       }
 
@@ -40,7 +43,7 @@
         let contactList = "***** Lista de Contatos *****\n";
 
         contacts.forEach((contact, index) => {
-          contactList += `ID: ${index}, Nome: ${contact.name}, Telefone: ${contact.phone}\n`;
+          contactList += `ID: ${index}, Nome: ${contact.name}, Telefone: ${contact.phone}, Data e Hora de Adição: ${contact.dateTime}\n`;
         });
 
         alert(contactList);
